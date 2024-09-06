@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
+import { AuthContext } from "../../components/authProvider/AuthProvider";
 import Product from "../../components/product/Product";
 const ProductPage = () => {
-  const [products, setProducst] = useState([]);
-  useEffect(() => {
-    fetch("/data.json")
-      .then((res) => res.json())
-      .then((data) => setProducst(data));
-  }, []);
+  const { products } = useContext(AuthContext);
   return (
     <main className="flex w-5/6 mx-auto mt-[80px]">
       <div className="w-[25%] border-r h-[100vh] ">

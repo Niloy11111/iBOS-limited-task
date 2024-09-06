@@ -22,41 +22,6 @@ const Login = () => {
 
   return (
     <>
-      {/* <form action="" onSubmit={handleLogin}>
-        <div>
-          <label htmlFor="" className="block">
-            Email
-          </label>
-          <input
-            className="py-3 border outline-none"
-            type="text"
-            id="email"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="" className="block">
-            Password
-          </label>
-          <input
-            className="py-3 border outline-none"
-            type="text"
-            id="email"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        {error && <p>{error}</p>}
-        <button className="border p-4">Login</button>
-        <Link to="/signup">Go to Signup</Link>
-      </form> */}
       <div className="flex items-center justify-center">
         <div className="flex-1 ">
           <div className="bg-[#fafafa] w-[500px] mx-auto py-[70px] px-[25px] mt-[20px]">

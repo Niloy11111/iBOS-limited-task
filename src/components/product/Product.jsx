@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../authProvider/AuthProvider";
 const Product = ({ product }) => {
-  const { myCartItems, user } = useContext(AuthContext);
+  const { user, handleAddToCart } = useContext(AuthContext);
 
   const {
     id,
@@ -12,23 +12,6 @@ const Product = ({ product }) => {
     discountPrice,
     description,
   } = product;
-
-  const handleAddToCart = () => {
-    let orderedItems = JSON.parse(localStorage.getItem("orders")) || [];
-    const newId = orderedItems?.length + 1;
-
-    const isExist = orderedItems.find((item) => item.id === product.id);
-
-    if (isExist) {
-      // console.log("here is ", newId);
-
-      orderedItems.push({ ...product, id: newId, email: user?.email });
-    } else {
-      orderedItems.push({ ...product, email: user?.email });
-    }
-
-    localStorage.setItem("orders", JSON.stringify(orderedItems));
-  };
 
   return (
     <div className="border rounded-lg p-4">
@@ -52,7 +35,7 @@ const Product = ({ product }) => {
           {description}
         </p>
         <button
-          onClick={handleAddToCart}
+          onClick={() => handleAddToCart(id, product)}
           className="bg-[#202020] flex gap-[10px] items-center w-full rounded-lg py-2.5 text-white justify-center font-dinLight font-semibold"
         >
           <img

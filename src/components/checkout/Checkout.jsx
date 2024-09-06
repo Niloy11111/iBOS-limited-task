@@ -3,22 +3,16 @@ import { AuthContext } from "../authProvider/AuthProvider";
 import CheckoutProduct from "../checkoutProduct/CheckoutProduct";
 const Checkout = () => {
   const [subTotal, setSubTotal] = useState(0);
-  const { cartItems, user } = useContext(AuthContext);
-  const myCartItems = cartItems?.filter((item) => item.email === user?.email);
-
-  const copyOfcartItems = JSON.parse(localStorage.getItem("orders"));
-  const filteredForMyCart = copyOfcartItems?.filter(
-    (item) => item.email === user?.email
-  );
+  const { filteredCartItems } = useContext(AuthContext);
 
   useEffect(() => {
-    const total = filteredForMyCart?.reduce(
+    const total = filteredCartItems?.reduce(
       (accumulated, item) => accumulated + parseInt(item.presentPrice),
       0
     );
 
     setSubTotal(total);
-  }, [filteredForMyCart, myCartItems]);
+  }, [filteredCartItems]);
 
   return (
     <div className="flex mt-[20px] gap-[80px] justify-between w-5/6 mx-auto">
@@ -28,19 +22,12 @@ const Checkout = () => {
         </h1>
         <div className="grid grid-cols-1 mt-[30px]">
           {" "}
-          {myCartItems?.length
-            ? myCartItems?.map((product) => (
-                <CheckoutProduct
-                  key={product.id}
-                  product={product}
-                ></CheckoutProduct>
-              ))
-            : filteredForMyCart?.map((product) => (
-                <CheckoutProduct
-                  key={product.id}
-                  product={product}
-                ></CheckoutProduct>
-              ))}
+          {filteredCartItems?.map((product) => (
+            <CheckoutProduct
+              key={product.id}
+              product={product}
+            ></CheckoutProduct>
+          ))}
         </div>
       </div>
 

@@ -33,13 +33,3 @@ const MainLayout = () => {
 };
 
 export default MainLayout;
-{
-  /* <h1 className="text-4xl font-bold text-center">First Hello</h1>
-      <Link to="/root/home">go home</Link>
-      <Link to="/root/products">products</Link> */
-}
-{
-  /* <button className="bg-red-500" onClick={userLogout}>
-        Logout
-      </button> */
-}
