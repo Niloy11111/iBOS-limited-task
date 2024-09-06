@@ -3,19 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../authProvider/AuthProvider";
 
 const Navbar = () => {
-  const { user, logOut, cartItems } = useContext(AuthContext);
+  const { logOut, filteredCartItems } = useContext(AuthContext);
   const navigate = useNavigate();
   const userLogout = () => {
     logOut();
     navigate("/");
   };
-
-  const myCartItems = cartItems?.filter((item) => item.email === user?.email);
-
-  const copyOfcartItems = JSON.parse(localStorage.getItem("orders"));
-  const filteredForMyCart = copyOfcartItems?.filter(
-    (item) => item.email === user?.email
-  );
 
   return (
     <section className="border-b pb-[50px] ">
@@ -72,7 +65,7 @@ const Navbar = () => {
               />
               <div className="absolute right-[-2px] bottom-[-2px] rounded-lg w-[16px] h-[16px] bg-[#323232] flex items-center justify-center">
                 <h2 className="text-[10px] font-dinLight font-semibold text-white">
-                  {filteredForMyCart?.length}
+                  {filteredCartItems ? filteredCartItems.length : 0}
                 </h2>
               </div>
             </div>

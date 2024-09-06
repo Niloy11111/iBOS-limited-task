@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FaApple } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,12 +7,19 @@ import { AuthContext } from "../../components/authProvider/AuthProvider";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
   const navigate = useNavigate();
-  const { user, login, error } = useContext(AuthContext);
+  const { user, login, error, setError } = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login(email, password);
+    if (isChecked) {
+      login(email, password);
+    } else {
+      setError("Please accept our terms & policy");
+    }
   };
 
   useEffect(() => {
@@ -37,8 +45,9 @@ const Login = () => {
             <form className="" action="" onSubmit={handleLogin}>
               <div className="relative">
                 <input
-                  className="pb-2 pt-6 pl-2 border outline-none bg-white w-full rounded-[6px] border-[#DEDEDE] text-sm mt-[20px]"
+                  className="pb-2 pt-6 pl-2 border outline-none bg-white w-full rounded-[6px] border-[#DEDEDE] text-sm mt-[20px] font-dinRegular "
                   id="email"
+                  placeholder="Enter your email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -51,27 +60,47 @@ const Login = () => {
 
               <div className="relative">
                 <input
-                  className="pb-2 pt-6 pl-2 border outline-none bg-white w-full rounded-[6px] border-[#DEDEDE] text-sm mt-[20px]"
+                  className="pb-2 pt-6 pl-2 border outline-none bg-white w-full rounded-[6px] border-[#DEDEDE] text-sm mt-[20px] font-dinRegular "
                   id="email"
-                  type="password"
+                  placeholder="Enter your password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
+
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="text-xl cursor-pointer absolute top-9 right-2"
+                >
+                  {showPassword ? (
+                    <AiFillEye className="text-2xl text-[#707070]"></AiFillEye>
+                  ) : (
+                    <AiFillEyeInvisible className="text-2xl text-[#707070]"></AiFillEyeInvisible>
+                  )}
+                </span>
                 <h3 className="top-[24px] left-[10px] absolute text-sm text-grayColor">
                   Password
                 </h3>
               </div>
 
-              <div className="flex items-center my-3">
-                <input type="checkbox" id="exampleCheckbox" />
-                <p className="text-[15px] text-[#000000] font-dinLight font-bold">
+              <div className="flex items-center gap-[5px] my-3">
+                <input
+                  onChange={(e) => setIsChecked(e.target.checked)}
+                  type="checkbox"
+                  id="exampleCheckbox"
+                />
+                <p className="text-[15px] text-[#000000] font-dinLight font-bold ">
                   I agree to the{" "}
                   <span className="underline">terms & policy</span>{" "}
                 </p>
               </div>
 
-              {error && <p>{error}</p>}
+              {error && (
+                <p className=" mb-[10px] text-red-500 font-dinLight font-semibold ">
+                  {error}
+                </p>
+              )}
 
               <button className="bg-black py-4 rounded-[8px] w-full text-white font-dinLight font-semibold ">
                 Sign In

@@ -1,18 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../authProvider/AuthProvider";
 import CheckoutProduct from "../checkoutProduct/CheckoutProduct";
 const Checkout = () => {
-  const [subTotal, setSubTotal] = useState(0);
-  const { filteredCartItems } = useContext(AuthContext);
-
-  useEffect(() => {
-    const total = filteredCartItems?.reduce(
-      (accumulated, item) => accumulated + parseInt(item.presentPrice),
-      0
-    );
-
-    setSubTotal(total);
-  }, [filteredCartItems]);
+  const { filteredCartItems, subTotal } = useContext(AuthContext);
 
   return (
     <div className="flex mt-[20px] gap-[80px] justify-between w-5/6 mx-auto">

@@ -11,6 +11,8 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [products, setProducts] = useState([]);
+
+  const [subTotal, setSubTotal] = useState(0);
   const login = (email, password) => {
     const data = userLogin(email, password);
     if (data) {
@@ -61,12 +63,11 @@ const AuthProvider = ({ children }) => {
     setFilteredCartItems(myCart);
   };
   useEffect(() => {
-    const storedItems = JSON.parse(localStorage.getItem("orders"));
-    if (storedItems && user) {
-      const myCart = storedItems.filter((item) => item.email === user.email);
+    if (user) {
+      const myCart = cartItems?.filter((item) => item.email === user.email);
       setFilteredCartItems(myCart);
     }
-  }, [user]);
+  }, [cartItems, user]);
 
   useEffect(() => {
     fetch("/data.json")
@@ -84,6 +85,66 @@ const AuthProvider = ({ children }) => {
     setFilteredCartItems(myCart);
   };
 
+  useEffect(() => {
+    const total = filteredCartItems?.reduce((accumulated, item) => {
+      const price = item.newPrice
+        ? parseFloat(item.newPrice)
+        : parseFloat(item.presentPrice);
+      return accumulated + price;
+    }, 0);
+
+    setSubTotal(total);
+  }, [filteredCartItems]);
+
+  const handleIncrease = (id, presentPrice) => {
+    let updatedCartItems = JSON.parse(localStorage.getItem("orders")) || [];
+    updatedCartItems = updatedCartItems.map((item) => {
+      if (item.id === id) {
+        const newQuantity = (item.quantity || 1) + 1;
+        const updatedItem = {
+          ...item,
+          quantity: newQuantity,
+          newPrice: newQuantity > 1 ? presentPrice * newQuantity : presentPrice,
+        };
+
+        return updatedItem;
+      }
+      return item;
+    });
+
+    localStorage.setItem("orders", JSON.stringify(updatedCartItems));
+    setCartItems(updatedCartItems);
+
+    const updatedFilteredCart = updatedCartItems.filter(
+      (item) => item.email === user?.email
+    );
+    setFilteredCartItems(updatedFilteredCart);
+  };
+  const handleDecrease = (id, presentPrice) => {
+    let updatedCartItems = JSON.parse(localStorage.getItem("orders")) || [];
+    updatedCartItems = updatedCartItems.map((item) => {
+      if (item.id === id) {
+        const newQuantity = (item.quantity || 1) - 1;
+        const updatedItem = {
+          ...item,
+          quantity: newQuantity,
+          newPrice: newQuantity > 1 ? presentPrice * newQuantity : presentPrice,
+        };
+
+        return updatedItem;
+      }
+      return item;
+    });
+
+    localStorage.setItem("orders", JSON.stringify(updatedCartItems));
+    setCartItems(updatedCartItems);
+
+    const updatedFilteredCart = updatedCartItems.filter(
+      (item) => item.email === user?.email
+    );
+    setFilteredCartItems(updatedFilteredCart);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -96,6 +157,10 @@ const AuthProvider = ({ children }) => {
         handleAddToCart,
         products,
         filteredCartItems,
+        handleIncrease,
+        handleDecrease,
+        subTotal,
+        setError,
       }}
     >
       {children}

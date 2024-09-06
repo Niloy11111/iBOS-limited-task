@@ -3,7 +3,8 @@ import { FiMinus, FiPlus } from "react-icons/fi";
 import { RxCross1 } from "react-icons/rx";
 import { AuthContext } from "../authProvider/AuthProvider";
 const CheckoutProduct = ({ product }) => {
-  const { handleRemove } = useContext(AuthContext);
+  const { handleRemove, handleIncrease, handleDecrease } =
+    useContext(AuthContext);
   const {
     id,
     img,
@@ -12,6 +13,7 @@ const CheckoutProduct = ({ product }) => {
     previousPrice,
     discountPrice,
     description,
+    newPrice,
   } = product;
 
   return (
@@ -19,9 +21,15 @@ const CheckoutProduct = ({ product }) => {
       <div className="flex justify-between">
         <div className="flex items-center gap-[8px] ">
           <div className="border rounded-[6px] flex items-center gap-[5px] py-1.5 px-1 max-w-max">
-            <FiMinus></FiMinus>
+            <FiMinus
+              className="cursor-pointer"
+              onClick={() => handleDecrease(id, presentPrice)}
+            ></FiMinus>
             <span>1</span>
-            <FiPlus></FiPlus>
+            <FiPlus
+              className="cursor-pointer"
+              onClick={() => handleIncrease(id, presentPrice)}
+            ></FiPlus>
           </div>
           <div className="flex">
             <div className="bg-[#EAEAEA] w-[100px] rounded-[6px] ">
@@ -39,7 +47,7 @@ const CheckoutProduct = ({ product }) => {
       <div className="text-right border-b pb-10">
         <h2 className="font-dinRegular font-extrabold text-lg ">
           {" "}
-          €{presentPrice}.00
+          €{newPrice > presentPrice ? newPrice : presentPrice}.00
         </h2>
       </div>
     </div>
