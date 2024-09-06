@@ -4,10 +4,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./index.css";
 
+import AuthProvider from "./components/authProvider/AuthProvider";
+import Checkout from "./components/checkout/Checkout";
 import ErrorPage from "./components/errorPage/ErrorPage";
 import MainLayout from "./mainLayout/MainLayout";
-import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
+import ProductPage from "./pages/productPage/ProductPage";
 import Signup from "./pages/signup/Signup";
 
 const isLogin = false;
@@ -15,20 +17,24 @@ const isLogin = false;
 const router = createBrowserRouter([
   {
     path: "/",
-    element: isLogin ? <MainLayout /> : <Signup />,
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
+  },
+  {
+    path: "/root",
+    element: <MainLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <Home />,
+        path: "/root",
+        element: <ProductPage />,
       },
       {
-        path: "/signup",
-        element: <Signup />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
+        path: "/root/checkout",
+        element: <Checkout />,
       },
     ],
   },
@@ -36,6 +42,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

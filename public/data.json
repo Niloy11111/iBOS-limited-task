@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Recliner Chair Wood",
+    "img": "https://i.ibb.co/wh9VxG4/image-125-removebg-preview-1.png",
+    "presentPrice": 299.0,
+    "previousPrice": 350.0,
+    "discountPrice": 30,
+    "description": "It has a backrest that can be tilted back, and often a footrest extended"
+  },
+  {
+    "id": 2,
+    "title": "Timber Ride Padded",
+    "img": "https://i.ibb.co/hCGTQKc/rocking-chair-with-padded-seat-1.jpg",
+    "presentPrice": 59.0,
+    "previousPrice": 75.0,
+    "discountPrice": 30,
+    "description": "It has a backrest that can be tilted back, and often a footrest extended"
+  },
+  {
+    "id": 3,
+    "title": "Colored Wooden Chair",
+    "img": "https://i.ibb.co/Hnr2g1v/image-146.png",
+    "presentPrice": 299.0,
+    "previousPrice": 350.0,
+    "discountPrice": 30,
+    "description": "It has a backrest that can be tilted back, and often a footrest extended"
+  },
+  {
+    "id": 4,
+    "title": "Blank Bamboo Wicker",
+    "img": "https://i.ibb.co/CzSpSj7/image-147.png",
+    "presentPrice": 299.0,
+    "previousPrice": 350.0,
+    "discountPrice": 30,
+    "description": "It has a backrest that can be tilted back, and often a footrest extended"
+  },
+  {
+    "id": 5,
+    "title": "Isolated Wooden Rock",
+    "img": "https://i.ibb.co/XZCdj8z/image-148.png",
+    "presentPrice": 165.0,
+    "previousPrice": 400.0,
+    "discountPrice": 30,
+    "description": "It has a backrest that can be tilted back, and often a footrest extended"
+  },
+  {
+    "id": 6,
+    "title": "Minimal Empty Rocking",
+    "img": "https://i.ibb.co/SXMkk38/image-149.png",
+    "presentPrice": 299.0,
+    "previousPrice": 350.0,
+    "discountPrice": 30,
+    "description": "It has a backrest that can be tilted back, and often a footrest extended"
+  }
+]

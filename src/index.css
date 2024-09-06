@@ -1,3 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+@font-face {
+  font-family: "dinBlack";
+  src: url("./assets/dinfont/new/DIN NEXT™ ARABIC BLACK.otf") format("opentype");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: "dinBold";
+  src: url("./assets/dinfont/new/DIN NEXT™ ARABIC BOLD.otf") format("opentype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "dinHeavy";
+  src: url("./assets/dinfont/new/DIN NEXT™ ARABIC HEAVY.otf") format("opentype");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "dinLight";
+  src: url("./assets/dinfont/new/DIN NEXT™ ARABIC LIGHT.otf") format("opentype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "dinMedium";
+  src: url("./assets/dinfont/new/DIN NEXT™ ARABIC MEDIUM.otf")
+    format("opentype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "dinRegular";
+  src: url("./assets/dinfont/new/DIN NEXT™ ARABIC REGULAR.otf")
+    format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "dinUltraLight";
+  src: url("./assets/dinfont/new/DIN NEXT™ ARABIC ULTRALIGHT.otf")
+    format("opentype");
+  font-weight: 200;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* body {
+  font-family: "dinfont";
+} */
