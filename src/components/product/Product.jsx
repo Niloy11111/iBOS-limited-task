@@ -16,7 +16,7 @@ const Product = ({ product }) => {
   return (
     <div className="border rounded-lg p-4">
       <div className="bg-[#f2f2f2] rounded-lg">
-        <img className="w-[240px] " src={img} alt="" />
+        <img className="w-full " src={img} alt="" />
       </div>
       <div className="mt-[20px]">
         <h2 className="font-dinLight font-extrabold text-lg ">{title}</h2>

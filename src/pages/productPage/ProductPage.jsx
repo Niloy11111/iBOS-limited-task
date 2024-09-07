@@ -16,11 +16,11 @@ const ProductPage = () => {
             Rocking chair
           </h2>
         </div>
-        <h2 className=" w-[80%] border-t border-b mt-[10px] text-[22px] py-[20px]  font-dinLight font-extrabold text-grayColor">
+        <h2 className="pl-[30px]  border-t border-b mt-[10px] text-[22px] py-[20px]  font-dinLight font-extrabold text-grayColor">
           {" "}
           Side chair
         </h2>
-        <h2 className="  mt-[10px] text-[22px] pt-[20px]  font-dinLight font-extrabold text-grayColor">
+        <h2 className="pl-[30px]  mt-[10px] text-[22px] pt-[20px]  font-dinLight font-extrabold text-grayColor">
           {" "}
           Lounge chair
         </h2>

@@ -43,7 +43,7 @@ const Navbar = () => {
               <Link>Customs</Link>
             </li>
             <li>
-              <Link>Blog sdfsdfds</Link>
+              <Link>Blog</Link>
             </li>
           </ul>
         </div>
